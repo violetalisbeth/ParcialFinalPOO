@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("reporteA.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pantalla-principal.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 650);
         stage.setTitle("Parcial Final POO");
         stage.setScene(scene);

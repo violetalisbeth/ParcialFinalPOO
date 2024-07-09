@@ -6,24 +6,40 @@ import com.example.parcialfinalpoo.Clases.Compra;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class ReporteAController { //00097923 Clase de reporte A en javafx
-    @FXML //00097923 para conecctar con la interfaz
+    @FXML //00097923 para conectar con la interfaz
     TextField tfIDCliente; //00097923 Agregando tfIDCliente en javafx
-    @FXML //00097923 para conecctar con la interfaz
+    @FXML //00097923 para conectar con la interfaz
     DatePicker dpFechaInicial; //00097923 Agregando dpFechaInicial en javafx
-    @FXML //00097923 para conecctar con la interfaz
+    @FXML //00097923 para conectar con la interfaz
     DatePicker dpFechaFinal; //00097923 Agregando dpFechaFinal en javafx
-    @FXML //00097923 para conecctar con la interfaz
+    @FXML //00097923 para conectar con la interfaz
     Button btnGenerarReporte; //00097923 Agregando btnGenerarReporte en javafx
-    @FXML //00097923 para conecctar con la interfaz
+    @FXML //00097923 para conectar con la interfaz
     Button btnExportarReporte; //00097923 Agregando btnExportarReporte en javafx
-    @FXML //00097923 para conecctar con la interfaz
+    @FXML //00097923 para conectar con la interfaz
     ListView<Compra> lvReporte; //00097923 Agregando el ListView en javafx
+
+
+    @FXML //00097923 para conectar con la interfaz
+    public void initialize() { //00097923 metodo para inicializar list view
+        lvReporte.setCellFactory(param -> new ListCell<Compra>() { //00097923 crea una list cell para compra
+            @Override //00097923 sobreescribe  el metodo
+            protected void updateItem(Compra item, boolean empty) { //00097923 crea un metodo updateitem
+                super.updateItem(item, empty); //00097923 pasa parametros a clase padre
+                if (item == null || empty) { // 00097923 evalua si el item es nulo o vacio
+                    setText(null); //00097923 si cumple la condicion establece un texto nulo
+                } else { //00097923 si no cumple la condicion inicial
+                    setText("ID: " + item.getId() + ", Descripción: " + item.getDescripcion() + //00097923 establece el texto con id, descripcion
+                            ", Fecha: " + item.getFecha() + //00097923 establece el texto con fecha
+                            ", ID Tarjeta: " + item.getId_tarjeta() + //00097923 establece el texto con id tarjeta
+                            ", Monto: " + item.getMonto()); //00097923 establece el texto con monto
+                }
+            }
+        });
+    }
 
     @FXML //00097923 para conecctar con la interfaz
     public void onGenerarReporteA(){ //00097923 Se define una funcion tipo lista para obtener el rango por fecha de compra
