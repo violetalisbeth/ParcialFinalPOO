@@ -10,8 +10,8 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
     }
     public void iniciarConexion() throws SQLException{ //00097923 se crea funcion para iniciar conexion a base de datos
         Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
-                "admin", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
-                "admin"); //00097923 Aqui se coloca la contrasena del usuario
+                "sa", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
+                "Maell"); //00097923 Aqui se coloca la contrasena del usuario
 
     }
     public void cerrarConexion() throws SQLException{ //00097923 se crea funcion para cerrar onexion
@@ -33,6 +33,24 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
 
         ResultSet rs = ps.executeQuery(); //00097923 Aqui se ejecuta la consulta sql
+        return rs;
+    }
+
+
+    public ResultSet generarReporteD(String facilitador)throws SQLException{
+        PreparedStatement ps = conn.prepareStatement("SELECT C.id, C.nombre, COUNT(CP.id) AS 'Cantidad de compras', SUM(CP.monto) AS 'total de compras'" +
+                "FROM CLIENTE C " +
+                "INNER JOIN TARJETA T ON C.id = T.id_cliente " +
+                "INNER JOIN FACILITADOR F ON T.id_facilitador = F.id " +
+                "INNER JOIN COMPRA CP ON T.id = CP.id_tarjeta " +
+                "WHERE F.nombre = ? " +
+                "GROUP BY C.id, C.nombre " +
+                "ORDER BY COUNT(CP.id) DESC ");
+
+        ps.setString(1, facilitador);
+
+        ResultSet rs = ps.executeQuery();
+
         return rs;
     }
 }
