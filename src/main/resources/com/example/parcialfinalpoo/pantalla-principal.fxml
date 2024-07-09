@@ -24,5 +24,10 @@
               <fx:include source="reporteD.fxml" />
           </content>
       </Tab>
+      <Tab text="Base de Datos">
+          <content>
+              <fx:include source="insertarValores.fxml" />
+          </content>
+      </Tab>
   </tabs>
 </TabPane>
