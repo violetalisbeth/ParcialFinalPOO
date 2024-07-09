@@ -11,7 +11,7 @@ public class Tarjeta {
     private String facilitador; // 00007515: facilitador de la tarjeta
     private int idCliente; // 00007515: id del cliente dueno de la tarejta
 
-    public Tarjeta(int id, String numero, String fechaExpiracion, String tipo, String facilitador, int idCliente) {
+    public Tarjeta(int id, String numero, String fechaExpiracion, String tipo, String facilitador, int idCliente) { // 00007515: Aqui se crea el constructo de Tarjeta
         this.id = id;
         this.numero = numero;
         this.fechaExpiracion = fechaExpiracion;
@@ -45,37 +45,37 @@ public class Tarjeta {
     }
 
     public String getFacilitador() {
-        return facilitador;
+        return facilitador; // 00007515: Retorna el valor de facilitador
     }
 
     public void setFacilitador(String facilitador) {
-        this.facilitador = facilitador;
+        this.facilitador = facilitador; // 00007515: Asigna el valor de facilitador
     }
 
     public int getIdCliente() {
-        return idCliente;
+        return idCliente; // 00007515: Retorna el valor de idCliente
     }
 
     public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+        this.idCliente = idCliente; // 00007515: Asigna el valor de idCliente
     }
 
     public String getTipo() {
-        return tipo;
+        return tipo; // 00007515: Retorna el valor de tipo
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        this.tipo = tipo; // 00007515: Asigna el valor de tipo
     }
 
     private String ocultarNumero() {
-        String primerosDigitos = numero.substring(0,numero.length()-4);
-        String textoOculto = numero.replace(primerosDigitos, "XXXX XXXX XXXX ");
-        return textoOculto;
+        String primerosDigitos = numero.substring(0,numero.length()-4); // 00007515: Obtiene los primeros 12 digitos de la tarjeta, incluyendo espacios o guiones
+        String textoOculto = numero.replace(primerosDigitos, "XXXX XXXX XXXX "); // 00007515: Oculta los primeros digitos y los reemplaza por X
+        return textoOculto; // 00007515: Retorna el texto oculto
     }
 
     @Override
     public String toString() {
-        return "\t- " + this.getNumero() + " " + this.facilitador.toUpperCase();
+        return "\t- " + this.getNumero() + " " + this.facilitador.toUpperCase(); // 00007515: Imprime una descripcion de la tarjeta
     }
 }
