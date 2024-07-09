@@ -39,14 +39,4 @@ public class Cliente {
         this.totalCompras = totalCompras;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente" +
-                "id=" + id +
-                ", nombre='" + nombre +
-                ", cantidadCompras=" + cantidadCompras +
-                ", totalCompras=" + totalCompras
-                ;
-    }
-
 }

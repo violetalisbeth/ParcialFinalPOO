@@ -8,19 +8,18 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-
 import java.sql.ResultSet;
 
 public class ReporteDController {
 
     @FXML
-    private ListView<Cliente> lvClienteFacilitador;
+    ListView<Cliente> lvClienteFacilitador;
     @FXML
-    private TextField tfFacilitador;
+    TextField tfFacilitador;
     @FXML
-    private Button btGenerarReporte;
+    Button btGenerarReporte;
     @FXML
-    private Button btExportarR;
+     Button btExportarR;
 
     private ObservableList<Cliente> clientes;
 

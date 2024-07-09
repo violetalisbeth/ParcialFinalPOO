@@ -1,10 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcialfinalpoo.ReporteAController">
    <center>
-      <Label text="Reporte A" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="519.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="lvReporte" prefHeight="496.0" prefWidth="800.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </ListView>
+         </children></VBox>
    </center>
+   <top>
+      <ToolBar prefHeight="92.0" prefWidth="800.0" style="-fx-background-color: #22395d;" BorderPane.alignment="CENTER">
+         <items>
+            <HBox prefHeight="100.0" prefWidth="769.0">
+               <children>
+                  <Label prefHeight="83.0" prefWidth="351.0" text="Reporte de Compras de Cliente " textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <VBox prefHeight="100.0" prefWidth="234.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="90.0" text="ID del Cliente:" textFill="#fffefe" />
+                              <TextField fx:id="tfIDCliente" prefHeight="25.0" prefWidth="159.0">
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="90.0" text="Fecha Inicial:" textFill="#f8f5f5" />
+                              <DatePicker fx:id="dpFechaInicial" prefHeight="10.0" prefWidth="159.0">
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="90.0" text="Fecha Final:" textFill="#fcf9f9" />
+                              <DatePicker fx:id="dpFechaFinal" prefHeight="25.0" prefWidth="157.0">
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="180.0">
+                     <children>
+                        <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#onGenerarReporteA" prefHeight="25.0" prefWidth="114.0" text="Generar Reporte">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnExportarReporte" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Exportar Reporte">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children></HBox>
+         </items>
+      </ToolBar>
+   </top>
 </BorderPane>
