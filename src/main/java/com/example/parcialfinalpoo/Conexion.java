@@ -33,6 +33,6 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
 
         ResultSet rs = ps.executeQuery(); //00097923 Aqui se ejecuta la consulta sql
-        return rs;
+        return rs; //00097923 retorna variable tipo resultset
     }
 }
