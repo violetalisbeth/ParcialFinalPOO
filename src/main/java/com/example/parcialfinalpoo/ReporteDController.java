@@ -13,86 +13,86 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ReporteDController {
+public class ReporteDController { // 00021523 clase de javafx
 
-    @FXML
-    ListView<Cliente> lvClienteFacilitador;
-    @FXML
-    TextField tfFacilitador;
-    @FXML
-    Button btGenerarReporte;
-    @FXML
-     Button btExportarR;
+    @FXML // 00021523 conexion a interfaz
+    ListView<Cliente> lvClienteFacilitador; // 00021523 ListView en javafx
+    @FXML // 00021523 conexion a interfaz
+    TextField tfFacilitador; // 00021523 Text Field que recibe el nombre del facilitador
+    @FXML // 00021523 conexion a interfaz
+    Button btGenerarReporte;  // 00021523 Boton para generar reporte
+    @FXML // 00021523 conexion a interfaz
+     Button btExportarR; // 00021523 boton para exportar reporte
 
-    private ObservableList<Cliente> clientes;
+    private ObservableList<Cliente> clientes; // 00021523 lista observable de clientes
 
-    @FXML
-    public void initialize () {
-        clientes = FXCollections.observableArrayList();
-        lvClienteFacilitador.setItems(clientes);
+    @FXML // 00021523 conexion a interfaz
+    public void initialize () {  // 00021523 metodo para inicializar vista
+        clientes = FXCollections.observableArrayList();  // 00021523 inicializa una lista observable
+        lvClienteFacilitador.setItems(clientes);  // 00021523 dentro del ListView recibe la lista observable de clientes
 
-        lvClienteFacilitador.setCellFactory(param -> new ListCell<Cliente>() {
-            @Override
-            protected void updateItem(Cliente item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item == null || empty) {
-                    setText(null);
-                } else {
-                    setText("ID: " + item.getId() + ", Nombre: " + item.getNombre() +
-                            ", Compras: " + item.getCantidadCompras() +
-                            ", Total: " + item.getTotalCompras());
+        lvClienteFacilitador.setCellFactory(param -> new ListCell<Cliente>() { // 00021523 creacion de un List cell para clientes
+            @Override // 00021523 sobreescribir el metodo
+            protected void updateItem(Cliente item, boolean empty) {  // 00021523 creacion de metodo para updateItem
+                super.updateItem(item, empty); // 00021523 parametros de clase padre
+                if (item == null || empty) { // 00021523 condicional para item vacio o nulo
+                    setText(null); // 00021523 texto nulo si no hexiste item
+                } else { // 00021523 si la condicion anterior no se cumple, entonces:
+                    setText("ID: " + item.getId() + ", Nombre: " + item.getNombre() + // 00021523 muestra informacion del cliente en cada celda
+                            ", Compras: " + item.getCantidadCompras() + // 00021523 muestra la cantidad de compras
+                            ", Total: " + item.getTotalCompras()); // 00021523 muestra el total de compras
                 }
             }
         });
     }
 
-    @FXML
-    public void onGenerarReporte(){
-        clientes.clear();
-        Conexion conexion = new Conexion();
+    @FXML // 00021523 conexion a la interfaz
+    public void onGenerarReporte(){ // 00021523 al hacer clic en boton de generear reporte hace llamado a este metodo
+        clientes.clear(); // 00021523 limpia lista de clientes
+        Conexion conexion = new Conexion(); // 00021523 creacion de una nueva conexion
 
         try{
-            conexion.iniciarConexion();
+            conexion.iniciarConexion(); // 00021523 inicia conexion
 
-            String facilitadorText = tfFacilitador.getText();
-            ResultSet rs = conexion.generarReporteD(facilitadorText);
-            while (rs.next()) {
-               Cliente cliente = new Cliente(
-                       rs.getInt("id"),
-                       rs.getString("nombre"),
-                       rs.getInt("Cantidad_compras"),
-                       rs.getDouble("Total_compras")
+            String facilitadorText = tfFacilitador.getText(); // 00021523 para obtener el texto que se ingreso en el text field
+            ResultSet rs = conexion.generarReporteD(facilitadorText); // 00021523 ejecucion de la consulta sql
+            while (rs.next()) { // 00021523 itera en los resultados de una consulta con bucle while
+               Cliente cliente = new Cliente( // 00021523 se inicia un nuevo Cliente
+                       rs.getInt("id"), // 00021523 agrega columna id dentro de Cliente
+                       rs.getString("nombre"), // 00021523 agrega columna nombre dentro de cliente
+                       rs.getInt("Cantidad_compras"), // 00021523 columna de cantidad de compras dentro de cliente
+                       rs.getDouble("Total_compras") // 00021523 columna total de comrpas dentro de cliente
                        );
-               clientes.add(cliente);
+               clientes.add(cliente); // 00021523 se agregan los resultados a la lista
             }
 
-            rs.close();
-            conexion.cerrarConexion();
-        }catch(Exception e) {
-            throw new RuntimeException(e);
+            rs.close(); // 00021523 cierra la consulta
+            conexion.cerrarConexion(); // 00021523 cierra la conexion
+        }catch(Exception e) { // 00021523 evalua excepcion
+            throw new RuntimeException(e); // 00021523 ejecucoin de runtime Exception si hay una excepcion
         }
     }
 
-    @FXML
-    public void exportarReporte() {
-        Exportador exportador = new Exportador(); // Se crea un objeto de la clase Exportador
-        ArrayList<String> lineas = new ArrayList<>(); // Se crea una lista para guardar línea por línea el texto que se va a guardar
-        lineas.add("Reporte de Clientes"); // Se añade el título del reporte
+    @FXML // 00021523 conexion a interfaz
+    public void exportarReporte() { // 00021523 metodo para exportar reporte
+        Exportador exportador = new Exportador(); // 00021523 crea un objeto de la clase Exportador
+        ArrayList<String> lineas = new ArrayList<>(); // 00021523 crea una lista y guarda linea a linea el texto para guardarlo
+        lineas.add("Reporte de Clientes"); // 00021523 da titlo al reporte
 
-        if (clientes.isEmpty()) {
-            lineas.add("\tNo hay clientes en la lista."); // Si la lista está vacía, se muestra que está vacía
-        } else {
-            for (Cliente cliente : clientes) {
-                String linea = "ID: " + cliente.getId() + ", Nombre: " + cliente.getNombre() +
-                        ", Compras: " + cliente.getCantidadCompras() + ", Total: " + cliente.getTotalCompras();
-                lineas.add(linea); // Se agrega la información del cliente a la lista de líneas
+        if (clientes.isEmpty()) { // 00021523 condicion si la list view esta vacia
+            lineas.add("\tNo hay clientes en la lista."); // 00021523 muestra que está vacía
+        } else { // 00021523 si la condicion anterior no se cumple
+            for (Cliente cliente : clientes) { // 00021523 itera sobre cada elemento para anadir la informacion a la lista
+                String linea = "ID: " + cliente.getId() + ", Nombre: " + cliente.getNombre() + // 00021523 agrega nombre y id del cliente
+                        ", Compras: " + cliente.getCantidadCompras() + ", Total: " + cliente.getTotalCompras(); // 00021523 agreag cantidad de las compras y el total
+                lineas.add(linea); // 00021523 agrega la información del cliente a la lista de líneas
             }
         }
 
-        try {
-            exportador.exportarReporte(lineas, "D"); // 00007515: Se intenta escribir el archivo
-        } catch (IOException e) {
-            e.printStackTrace(); // 00007515: Si falla se imprime el error
+        try { // 00021523 inicio de try catch
+            exportador.exportarReporte(lineas, "D"); // 00021523 Se intenta escribir el archivo
+        } catch (IOException e) { // 00021523 evalua excepcion
+            e.printStackTrace(); // 00021523 Si falla se imprime el error
         }
     }
 }
