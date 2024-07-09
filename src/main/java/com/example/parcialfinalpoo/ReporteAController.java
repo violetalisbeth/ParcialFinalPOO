@@ -32,7 +32,8 @@ public class ReporteAController { //00097923 Clase de reporte A en javafx
                 if (item == null || empty) { // 00097923 evalua si el item es nulo o vacio
                     setText(null); //00097923 si cumple la condicion establece un texto nulo
                 } else { //00097923 si no cumple la condicion inicial
-                    setText("ID: " + item.getId() + ", Descripción: " + item.getDescripcion() + //00097923 establece el texto con id, descripcion
+                    setText("Nombre del cliente: " + item.getNombreCliente() + // 00097923 establece texto con nombre de cliente
+                            "ID: " + item.getId() + ", Descripción: " + item.getDescripcion() + //00097923 establece el texto con id, descripcion
                             ", Fecha: " + item.getFecha() + //00097923 establece el texto con fecha
                             ", ID Tarjeta: " + item.getId_tarjeta() + //00097923 establece el texto con id tarjeta
                             ", Monto: " + item.getMonto()); //00097923 establece el texto con monto
@@ -54,7 +55,8 @@ public class ReporteAController { //00097923 Clase de reporte A en javafx
                     dpFechaFinal.getValue().toString()); //00097923 se introduce la fecha final obtenida del DatePicker
             while (rs.next()){ //00097923 Se hace un uso de while para que recorra los resultados que da la consulta
 
-                Compra compra = new Compra(rs.getInt("id"), // 00097923 Se agrega la columna id de compra dentro del objeto compra
+                Compra compra = new Compra(rs.getString("nombre"), // 00097923 Se agrega la columna nombre de cliente dentro del objeto compra
+                        rs.getInt("id"), // 00097923 Se agrega la columna id de compra dentro del objeto compra
                         rs.getString("descripcion"), //00097923 Se agrega la columna descripcion de compra
                         rs.getString("fecha"), //00097923 Se agrega la columna de la fecha de la compra
                         rs.getInt("id_tarjeta"), //00097923 Se agrega la columna del id de la tarjeta con la que se realizo la compra
