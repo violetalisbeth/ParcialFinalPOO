@@ -1,6 +1,5 @@
 package com.example.parcialfinalpoo;
 
-import com.example.parcialfinalpoo.Clases.Conexion;
 import com.example.parcialfinalpoo.Clases.Tarjeta;
 import com.example.parcialfinalpoo.Exportar.Exportador;
 import javafx.collections.FXCollections;

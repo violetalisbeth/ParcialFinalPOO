@@ -9,7 +9,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
     }
     public void iniciarConexion() throws SQLException{ //00097923 se crea funcion para iniciar conexion a base de datos
-        Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
+        conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
                 "admin", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
                 "admin"); //00097923 Aqui se coloca la contrasena del usuario
 
@@ -34,5 +34,19 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
         ResultSet rs = ps.executeQuery(); //00097923 Aqui se ejecuta la consulta sql
         return rs; //00097923 retorna variable tipo resultset
+    }
+
+    public ResultSet generarReporteB(int id) throws SQLException {
+        //   WHERE c.id = 1;
+        PreparedStatement ps = conn.prepareStatement("SELECT t.id, t.numero, t.fecha_expiracion, t.tipo, f.nombre, c.id AS id_cliente" // 00007515: Aqui se coloca la consulta sql, en esta linea se selecciona lo que se va a mostrar
+                + " FROM TARJETA t " // 00007515: Aqui se coloca la tabla de de donde vienen algunos elementos del SELECT
+                + "INNER JOIN CLIENTE c ON t.id_cliente = c.id " // 00007515: Une CLIENTE con TARJETA para obtener la informacion del cliente
+                + "INNER JOIN FACILITADOR f ON t.id_facilitador = f.id " // 00007515: Une TARJETA con FACILITADOR para obtener el nombre de facilitador
+                + "WHERE c.id = ? ") // 00007515 Aqui se realiza un where que permite especificar el id del cliente para filtrar las tarjetas por cliente
+                ;
+        ps.setInt(1, id); // 00007515 Se coloca en el espacio de ? que estara el id
+
+        ResultSet rs = ps.executeQuery(); // 00007515: Aqui se ejecuta la consulta sql
+        return rs; // 00007515: Aqui se retorna el resultado
     }
 }
