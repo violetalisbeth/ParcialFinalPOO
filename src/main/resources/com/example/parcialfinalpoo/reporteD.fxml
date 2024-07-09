@@ -10,7 +10,7 @@
          <children>
             <TextField fx:id="tfFacilitador" layoutX="472.0" layoutY="38.0" prefHeight="25.0" prefWidth="107.0" />
             <Button fx:id="btGenerarReporte" layoutX="651.0" layoutY="17.0" mnemonicParsing="false" onAction="#onGenerarReporte" text="Generar reporte" />
-            <Button fx:id="btExportarR" layoutX="650.0" layoutY="54.0" mnemonicParsing="false" text="Exportar reporte" />
+            <Button fx:id="btExportarR" layoutX="650.0" layoutY="54.0" mnemonicParsing="false" onAction="#exportarReporte" text="Exportar reporte" />
             <Label layoutX="21.0" layoutY="35.0" text="Reporte Compras con Facilitador" textFill="WHITE">
                <font>
                   <Font size="21.0" />

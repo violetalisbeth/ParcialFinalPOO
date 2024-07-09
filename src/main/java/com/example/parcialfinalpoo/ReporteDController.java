@@ -1,5 +1,6 @@
 package com.example.parcialfinalpoo;
 
+import com.example.parcialfinalpoo.Exportar.Exportador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +9,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.sql.ResultSet;
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class ReporteDController {
 
@@ -70,4 +73,26 @@ public class ReporteDController {
         }
     }
 
+    @FXML
+    public void exportarReporte() {
+        Exportador exportador = new Exportador(); // Se crea un objeto de la clase Exportador
+        ArrayList<String> lineas = new ArrayList<>(); // Se crea una lista para guardar línea por línea el texto que se va a guardar
+        lineas.add("Reporte de Clientes"); // Se añade el título del reporte
+
+        if (clientes.isEmpty()) {
+            lineas.add("\tNo hay clientes en la lista."); // Si la lista está vacía, se muestra que está vacía
+        } else {
+            for (Cliente cliente : clientes) {
+                String linea = "ID: " + cliente.getId() + ", Nombre: " + cliente.getNombre() +
+                        ", Compras: " + cliente.getCantidadCompras() + ", Total: " + cliente.getTotalCompras();
+                lineas.add(linea); // Se agrega la información del cliente a la lista de líneas
+            }
+        }
+
+        try {
+            exportador.exportarReporte(lineas, "D"); // 00007515: Se intenta escribir el archivo
+        } catch (IOException e) {
+            e.printStackTrace(); // 00007515: Si falla se imprime el error
+        }
+    }
 }
