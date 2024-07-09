@@ -1,8 +1,11 @@
 package com.example.parcialfinalpoo;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 
 import com.example.parcialfinalpoo.Clases.Compra;
+import com.example.parcialfinalpoo.Exportar.Exportador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -73,6 +76,30 @@ public class ReporteAController { //00097923 Clase de reporte A en javafx
         }
         lvReporte.setItems(resultados); //00097923 muestra en el list view lo que se guardo en la variable resultados
 
+    }
+    @FXML //00097923 para conectar con la interfaz
+    public void exportarReporte() { //00097923 se crea metodo para exportar reporte
+        Exportador exportador = new Exportador(); // 00097923 se crea un objeto de la clase exportador
+        ArrayList<String> lineas = new ArrayList<>(); // 00097923 se crea una lista para guardar las lineas del texto
+        lineas.add("Reporte de Compras Por Rango De Fecha"); // 00097923 es para agregarle un titulo a las compras
+
+        if (lvReporte.getItems().isEmpty()) { //00097923 evalua si la list view esta vacia
+            lineas.add("\tNo hay compras en la lista."); //00097923 se imprimira en el archivo si la list view esta vacia
+        } else { //00097923 en el caso que no cumpla la condicion
+            for (Compra compra : lvReporte.getItems()) { // 00097923 recorre linea por linea agregando la informacion
+                String linea = "Nombre del cliente: " + compra.getNombreCliente() + //000979223 agrega el nombre del cliente
+                        ", ID: " + compra.getId() + ", Descripcion: " + compra.getDescripcion() + //00097923 agrega descripcion de compras
+                        ", Fecha: " + compra.getFecha() + ", ID Tarjeta: " + compra.getId_tarjeta() + //00097923 agrega id tarjeta
+                        ", Monto: " + compra.getMonto(); // 00097923 agrega monto de compra
+                lineas.add(linea); // 00097923 se agrega a el arraylist de lineas
+            }
+        }
+
+        try { //00097923 inicia un try catch
+            exportador.exportarReporte(lineas, "A"); // 00007515: Se intenta escribir el archivo
+        } catch (IOException e) { //00097923 evalua si falla
+            e.printStackTrace(); // 00007515: Si falla se imprime el error
+        }
     }
 }
 
