@@ -8,17 +8,17 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
     protected Conexion(){ //00097923 Este es un constructor vacio
 
     }
-    public void iniciarConexion() throws SQLException{ //00097923 se crea funcion para iniciar conexion a base de datos
+    public void iniciarConexion() throws SQLException{ //00097923 se crea metodo para iniciar conexion a base de datos
         conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
                 "admin", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
                 "admin"); //00097923 Aqui se coloca la contrasena del usuario
 
     }
-    public void cerrarConexion() throws SQLException{ //00097923 se crea funcion para cerrar onexion
+    public void cerrarConexion() throws SQLException{ //00097923 se crea metodo para cerrar onexion
         conn.close(); // 00097923 Se crea conexion
     }
 
-    public ResultSet generarReporteA(int id, String fechaInicial, String fechaFinal) throws SQLException{
+    public ResultSet generarReporteA(int id, String fechaInicial, String fechaFinal) throws SQLException{ //00097923 se crea metodo para generar el reporte a
         PreparedStatement ps = conn.prepareStatement("SELECT c.nombre,com.id, com.descripcion, com.fecha, com.id_tarjeta, com.monto" //00097923 Aqui se coloca la consulta sql, en esta linea se selecciona lo que se va a mostrar
                 +" FROM CLIENTE c " //00097923 Aqui se coloca la tabla de de donde vienen algunos elementos del SELECT
                 +  "INNER JOIN COMPRAXCLIENTE cc ON cc.id_cliente = c.id " //00097923 Une CLIENTE con COMPRAXCLIENTE para obtener las compras por cliente
