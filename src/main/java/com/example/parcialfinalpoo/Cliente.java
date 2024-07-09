@@ -6,11 +6,11 @@ public class Cliente {
     private int cantidadCompras;
     private double totalCompras;
 
-    public Cliente(int id, String nombre, int cantidadCompras, double totalCompras) {
+    public Cliente(int id, String nombre, int CantidadCompras, double TotalCompras) {
         this.id = id;
         this.nombre = nombre;
-        this.cantidadCompras = cantidadCompras;
-        this.totalCompras = totalCompras;
+        this.cantidadCompras = CantidadCompras;
+        this.totalCompras = TotalCompras;
     }
 
     public int getId() {
@@ -37,6 +37,16 @@ public class Cliente {
     }
     public void setTotalCompras(double totalCompras) {
         this.totalCompras = totalCompras;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente" +
+                "id=" + id +
+                ", nombre='" + nombre +
+                ", cantidadCompras=" + cantidadCompras +
+                ", totalCompras=" + totalCompras
+                ;
     }
 
 }

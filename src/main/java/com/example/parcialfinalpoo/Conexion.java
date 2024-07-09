@@ -9,7 +9,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
     }
     public void iniciarConexion() throws SQLException{ //00097923 se crea funcion para iniciar conexion a base de datos
-        Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
+        conn = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-NU1OAIM\\MSSQLSERVER01:4022;databaseName=BCNDataBase;encrypt=false;", //00097923 Se crea conexion a base de datos
                 "sa", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
                 "Maell"); //00097923 Aqui se coloca la contrasena del usuario
 
@@ -33,12 +33,12 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
 
         ResultSet rs = ps.executeQuery(); //00097923 Aqui se ejecuta la consulta sql
-        return rs;
+        return rs; //00097923 retorna variable tipo resultset
     }
 
 
     public ResultSet generarReporteD(String facilitador)throws SQLException{
-        PreparedStatement ps = conn.prepareStatement("SELECT C.id, C.nombre, COUNT(CP.id) AS 'Cantidad de compras', SUM(CP.monto) AS 'total de compras'" +
+        PreparedStatement ps = conn.prepareStatement("SELECT C.id, C.nombre, COUNT(CP.id) AS 'Cantidad_compras', SUM(CP.monto) AS 'Total_compras'" +
                 "FROM CLIENTE C " +
                 "INNER JOIN TARJETA T ON C.id = T.id_cliente " +
                 "INNER JOIN FACILITADOR F ON T.id_facilitador = F.id " +
@@ -50,7 +50,6 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ps.setString(1, facilitador);
 
         ResultSet rs = ps.executeQuery();
-
         return rs;
     }
 }
