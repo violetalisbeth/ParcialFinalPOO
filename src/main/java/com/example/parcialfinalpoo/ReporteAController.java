@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 
 public class ReporteAController {
@@ -22,6 +23,24 @@ public class ReporteAController {
     Button btnExportarReporte;
     @FXML
     ListView<Compra> lvReporte;
+
+    @FXML
+    public void initialize() {
+        lvReporte.setCellFactory(param -> new ListCell<Compra>() {
+            @Override
+            protected void updateItem(Compra item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText("ID: " + item.getId() + ", Descripción: " + item.getDescripcion() +
+                            ", Fecha: " + item.getFecha() +
+                            ", ID Tarjeta: " + item.getId_tarjeta() +
+                            ", Monto: " + item.getMonto());
+                }
+            }
+        });
+    }
 
     @FXML
     public void onGenerarReporteA(){ //00097923 Se define una funcion tipo lista para obtener el rango por fecha de compra
@@ -54,5 +73,6 @@ public class ReporteAController {
         lvReporte.setItems(resultados);
 
     }
+
 }
 
