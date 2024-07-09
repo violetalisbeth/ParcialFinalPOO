@@ -1,4 +1,4 @@
-package com.example.parcialfinalpoo;
+package com.example.parcialfinalpoo.Clases;
 
 public class Cliente {
     private int id;

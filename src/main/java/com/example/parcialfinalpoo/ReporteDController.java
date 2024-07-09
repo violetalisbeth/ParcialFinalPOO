@@ -1,5 +1,6 @@
 package com.example.parcialfinalpoo;
 
+import com.example.parcialfinalpoo.Clases.Cliente;
 import com.example.parcialfinalpoo.Exportar.Exportador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
