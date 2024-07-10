@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcialfinalpoo.PantallaPrincipal">
+  <tabs>
+      <Tab text="Reporte A">
+          <content>
+              <fx:include source="reporteA.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Reporte B">
+          <content>
+              <fx:include source="reporteB.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Reporte C">
+          <content>
+              <fx:include source="reporteC.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Reporte D">
+          <content>
+              <fx:include source="reporteD.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Insertar Tarjeta">
+          <content>
+              <fx:include source="insertar-tarjeta.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Insertar Cliente">
+          <content>
+              <fx:include source="inserar-cliente.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Insertar Comprar">
+          <content>
+              <fx:include source="insertar-compra.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Borrar">
+          <content>
+              <fx:include source="borrar-base.fxml" />
+          </content>
+      </Tab>
+  </tabs>
+</TabPane>
