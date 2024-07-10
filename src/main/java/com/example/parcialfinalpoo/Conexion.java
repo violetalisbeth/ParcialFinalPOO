@@ -49,23 +49,22 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ResultSet rs = ps.executeQuery(); // 00007515: Aqui se ejecuta la consulta sql
         return rs; // 00007515: Aqui se retorna el resultado
     }
-    public int insertarTarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, int id_facilitador, int id_cliente) throws SQLException{
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO TARJETA VALUES(?,?,?,?,?)");
-        ps.setString(1, numeroTarjeta);
-        ps.setString(2, fechaExpiracion);
-        ps.setString(3, tipo);
-        ps.setInt(4, id_facilitador);
-        ps.setInt(5, id_cliente);
-
+    public int insertarTarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, int id_facilitador, int id_cliente) throws SQLException{ //00097923 metodo para insertar tarjetas
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO TARJETA VALUES(?,?,?,?,?)"); //00097923 insercion a table
+        ps.setString(1, numeroTarjeta); //00097923 toma primer parametro (?) para colocar el numero de tarjeta
+        ps.setString(2, fechaExpiracion); //00097923 toma segundo parametro (?) para colocar fecha de expiracion
+        ps.setString(3, tipo); //00097923 toma tercer parametro (?) para colocar tipo de tarjeta
+        ps.setInt(4, id_facilitador); //00097923 toma cuarto parametro (?) para colocar id facilitador
+        ps.setInt(5, id_cliente); //00097923 toma quinto parametro (?) para colocar el id cliente
         return ps.executeUpdate();
 
     }
 
-    public int insertarCliente(String nombre, String direccion, String telefono) throws SQLException{
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO CLIENTE VALUES(?,?,?)");
-        ps.setString(1, nombre);
-        ps.setString(2, direccion);
-        ps.setString(3, telefono);
+    public int insertarCliente(String nombre, String direccion, String telefono) throws SQLException{ //00021523 metodo para insertar clientes
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO CLIENTE VALUES(?,?,?)"); //00021523 insercion a la tabla
+        ps.setString(1, nombre); //00021523 toma primer parametro (?) para colocar el nombre
+        ps.setString(2, direccion); //00021523 toma segundo parametro(?) para direccion
+        ps.setString(3, telefono); //00021523 toma tercer parametro(?) para telefono
 
         return ps.executeUpdate();
 
