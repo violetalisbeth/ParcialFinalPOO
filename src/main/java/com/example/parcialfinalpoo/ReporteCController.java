@@ -113,5 +113,5 @@ public class ReporteCController {
                 lineas.add(tarjeta); // 00007515: Se agrega la tarjeta a la lista de lineas
             }
         }
-
+    }
 }

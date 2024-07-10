@@ -9,7 +9,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
     }
     public void iniciarConexion() throws SQLException{ //00097923 se crea metodo para iniciar conexion a base de datos
-        conn = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-NU1OAIM\\\\MSSQLSERVER01:4022;databaseName=BCNDataBase;encrypt=false;", //00097923 Se crea conexion a base de datos
+        conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
                 "admin", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
                 "admin"); //00097923 Aqui se coloca la contrasena del usuario
 
