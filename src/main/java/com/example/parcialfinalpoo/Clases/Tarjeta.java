@@ -3,7 +3,7 @@ package com.example.parcialfinalpoo.Clases;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class Tarjeta {
+public class Tarjeta {//00351519 Creacion de clase Tarjeta
     private int id; // 00007515: id de la tarjeta
     private String numero; // 00007515: numero de la tarjeta
     private String fechaExpiracion; // 00007515: fecha de expiracion de la tarjeta
@@ -48,7 +48,7 @@ public class Tarjeta {
         return facilitador; // 00007515: Retorna el valor de facilitador
     }
 
-    public void setFacilitador(String facilitador) {
+    public void setFacilitador(String facilitador) {//00351519 metodo para asignar valor de facilitador
         this.facilitador = facilitador; // 00007515: Asigna el valor de facilitador
     }
 
@@ -68,14 +68,14 @@ public class Tarjeta {
         this.tipo = tipo; // 00007515: Asigna el valor de tipo
     }
 
-    private String ocultarNumero() {
+    private String ocultarNumero() {//00351519 metodo para ocultar numero
         String primerosDigitos = numero.substring(0,numero.length()-4); // 00007515: Obtiene los primeros 12 digitos de la tarjeta, incluyendo espacios o guiones
         String textoOculto = numero.replace(primerosDigitos, "XXXX XXXX XXXX "); // 00007515: Oculta los primeros digitos y los reemplaza por X
         return textoOculto; // 00007515: Retorna el texto oculto
     }
 
-    @Override
-    public String toString() {
+    @Override//00351519 Sobreescribe el metodo toString
+    public String toString() {//00351519 metodo para retornar una descripcion de la tarjeta
         return "\t- " + this.getNumero() + " " + this.facilitador.toUpperCase(); // 00007515: Imprime una descripcion de la tarjeta
     }
 }

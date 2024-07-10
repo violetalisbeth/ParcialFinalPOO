@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReporteCController {
+public class ReporteCController {//00351519 creacion de controller para reporte C
     private final List<Tarjeta> tarjetasCredito = new ArrayList<>(); // 00007515: Lista de tarjetas de credito
     private final List<Tarjeta> tarjetasDebito = new ArrayList<>(); // 00007515: Lista de tarjetas de debito
     private ObservableList<Tarjeta> contenidoCredito; // 00007515: Lista observable de tarjetas de credito
@@ -31,7 +31,7 @@ public class ReporteCController {
     @FXML // 00007515: Conecta con la interfaz
     private TextField idUsuario; // 00007515: TextField para escribir el id de usuario en el archivo fxml
 
-    @FXML
+    @FXML// 00007515: Conecta con la interfaz
     public void initialize() { // 00007515: Metodo para inicializar la pantalla
         contenidoCredito = FXCollections.observableArrayList(tarjetasCredito); // 00007515: Aqui se guarda el contenido en la lista observable de credito
         contenidoDebito = FXCollections.observableArrayList(tarjetasDebito); // 00007515: Aqui se guarda el contenido en la lista observable de debito
@@ -46,7 +46,7 @@ public class ReporteCController {
 
                 if (item == null || empty) { // 00007515: Si la lista esta vacia o el item nulo, no se pone texto
                     setText(null); // 00007515: Se pone el texto como nulo
-                } else {
+                } else {//00351519 si no se cumple condicion inicial se ejecuta el siguiente codigo
                     setText(item.toString()); // 00007515: Aqui se asigna el texto usando el toString de la clase Tarjeta
                 }
             }
@@ -59,21 +59,21 @@ public class ReporteCController {
 
                 if (item == null || empty) { // 00007515: Si la lista esta vacia o el item nulo, no se pone texto
                     setText(null); // 00007515: Se pone el texto como nulo
-                } else {
+                } else {//00351519 si no se cumple condicion inicial se ejecuta el siguiente codigo
                     setText(item.toString()); // 00007515: Aqui se asigna el texto usando el toString de la clase Tarjeta
                 }
             }
         });
     }
 
-    @FXML
-    public void generarReporte() {
+    @FXML// 00007515: Conecta con la interfaz
+    public void generarReporte() {//00351519 metodo para generar reporte C
         Conexion conexion = new Conexion(); // 00007515: Se crea un nuevo objeto de conexion
         tarjetasCredito.clear(); // 00007515: Se vacia la lista de credito
         tarjetasDebito.clear(); // 00007515: Se vacia la lista de debito
         listaCredito.setItems(null); // 00007515: Se vacia la lista de credito
         listaDebito.setItems(null); // 00007515: Se vacia la lista de debito
-        try {
+        try {//00351519 se inicia un try... catch para capturar cualquier error
             int id = Integer.parseInt(idUsuario.getText()); // 00007515: Se convierte el id en el textfield a entero
             conexion.iniciarConexion(); // 00007515: Aqui se inicia la conexion
             ResultSet resultados = conexion.generarReporteC(id); // 00007515: Aqui se ejecuta el generarReporteB de la clase Conexion
@@ -86,29 +86,29 @@ public class ReporteCController {
                 int idCliente = Integer.parseInt(resultados.getString("id_cliente")); // 00007515: Se saca el id de cliente
                 Tarjeta tarjeta = new Tarjeta(idTarjeta, numero, fechaExpiracion, tipo, facilitador, idCliente); // 00007515: Se crea una nueva tarjeta
 
-                if (tarjeta.getTipo().matches("DEBITO")) {
+                if (tarjeta.getTipo().matches("DEBITO")) {//00351519 condicion que verifica si el tipo de tarjeta es debito
                     tarjetasDebito.add(tarjeta); // 00007515: Si la tarjeta es debito se mete en la lista de debito
-                } else {
+                } else {//00351519 si no se cumple condicion inicial se ejecuta el siguiente codigo
                     tarjetasCredito.add(tarjeta); // 00007515: Si la tarjeta es de credito se mete en la lista de credito
                 }
             }
 
             listaCredito.setItems(FXCollections.observableArrayList(tarjetasCredito)); // 00007515: Se actualiza la lista de credito
             listaDebito.setItems(FXCollections.observableArrayList(tarjetasDebito)); // 00007515: Se actualiza la lista de debito
-        } catch(SQLException e) {
+        } catch(SQLException e) {//00351519 captura si hay una excepcion
             e.printStackTrace(); // 00007515: Se imprime el error si falla
         }
     }
 
-    @FXML
-    public void exportarReporte() {
+    @FXML// 00007515: Conecta con la interfaz
+    public void exportarReporte() {//00351519 metodo para exportar reporteC
         Exportador exportador = new Exportador(); // 00007515: Se crea un objeto de la clase Exportador
         ArrayList<String> lineas = new ArrayList<>(); // 00007515: Se crea una lista para guardar linea por linea el texto que se va a guardar
         lineas.add("Tarjetas de Credito"); // 00007515: Se anade el titulo para credito
-        if (tarjetasCredito.isEmpty()) {
+        if (tarjetasCredito.isEmpty()) {//00351519 condicion que verifica si la lista esta vacia
             lineas.add("\tEl usuario no tiene tarjetas de credito."); // 00007515: Si la lista esta vacia, se muestra que esta vacia
         } else {
-            for (int i = 0; i < tarjetasCredito.size(); i++) {
+            for (int i = 0; i < tarjetasCredito.size(); i++) {//00351519 estructura for que recorre contenido de la lista
                 String tarjeta = tarjetasCredito.get(i).toString(); // 00007515: Para cada tarjeta, se usa el toString para sacar la informacion
                 lineas.add(tarjeta); // 00007515: Se agrega la tarjeta a la lista de lineas
             }

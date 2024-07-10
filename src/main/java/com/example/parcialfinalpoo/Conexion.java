@@ -51,8 +51,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         return rs;//00351519 retorna variable tipo ResultSet
     }
 
-    public ResultSet generarReporteC(int id) throws SQLException {
-        //   WHERE c.id = 1;
+    public ResultSet generarReporteC(int id) throws SQLException {//00351519 metodo para generar reporte C
         PreparedStatement ps = conn.prepareStatement("SELECT t.id, t.numero, t.fecha_expiracion, t.tipo, f.nombre, c.id AS id_cliente" // 00007515: Aqui se coloca la consulta sql, en esta linea se selecciona lo que se va a mostrar
                 + " FROM TARJETA t " // 00007515: Aqui se coloca la tabla de de donde vienen algunos elementos del SELECT
                 + "INNER JOIN CLIENTE c ON t.id_cliente = c.id " // 00007515: Une CLIENTE con TARJETA para obtener la informacion del cliente
@@ -88,7 +87,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ps.setString(3, tipo); //00097923 toma tercer parametro (?) para colocar tipo de tarjeta
         ps.setInt(4, id_facilitador); //00097923 toma cuarto parametro (?) para colocar id facilitador
         ps.setInt(5, id_cliente); //00097923 toma quinto parametro (?) para colocar el id cliente
-        return ps.executeUpdate();
+        return ps.executeUpdate();//00351519 ejecuta la consulta sql y retorna variable tipo ResultSet
 
     }
 
@@ -98,7 +97,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ps.setString(2, direccion); //00021523 toma segundo parametro(?) para direccion
         ps.setString(3, telefono); //00021523 toma tercer parametro(?) para telefono
 
-        return ps.executeUpdate();
+        return ps.executeUpdate();//00351519 ejecuta la consulta sql y retorna variable tipo ResultSet
 
     }
 
