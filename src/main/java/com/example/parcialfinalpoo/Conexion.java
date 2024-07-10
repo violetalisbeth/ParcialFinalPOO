@@ -109,6 +109,26 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ps.setInt(4, idTarjeta);//00351519 parametro id de la tarjeta que estara en el ?
 
         return ps.executeUpdate();//00351519 ejecuta la consulta sql y retorna variable tipo ResultSet
+    }
 
+    public int borrarCliente(int id) throws SQLException { // 00007515: Funcion borrar cliente
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM CLIENTE WHERE id = ?"); // 00007515: Consulta que va a borrar basandose en el id
+        ps.setInt(1, id); // 00007515: parametro id que estara en el ?
+
+        return ps.executeUpdate(); // 00007515: Ejecuta la consulta sql y retorna un entero
+    }
+
+    public int borrarTarjeta(int id) throws SQLException { // 00007515: Funcion borrar tarjeta
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM TARJETA WHERE id = ?"); // 00007515: Consulta que va a borrar basandose en el id
+        ps.setInt(1, id); // 00007515: parametro id que estara en el ?
+
+        return ps.executeUpdate(); // 00007515: Ejecuta la consulta sql y retorna un entero
+    }
+
+    public int borrarCompra(int id) throws SQLException { // 00007515: Funcion borrar compra
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM COMPRA WHERE id = ?"); // 00007515: Consulta que va a borrar basandose en el id
+        ps.setInt(1, id); // 00007515: parametro id que estara en el ?
+
+        return ps.executeUpdate(); // 00007515: Ejecuta la consulta sql y retorna un entero
     }
 }
