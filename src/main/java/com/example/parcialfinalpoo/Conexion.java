@@ -61,11 +61,11 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
     }
 
-    public int insertarCliente(String nombre, String direccion, String telefono) throws SQLException{
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO CLIENTE VALUES(?,?,?)");
-        ps.setString(1, nombre);
-        ps.setString(2, direccion);
-        ps.setString(3, telefono);
+    public int insertarCliente(String nombre, String direccion, String telefono) throws SQLException{ //00021523 metodo para insertar clientes
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO CLIENTE VALUES(?,?,?)"); //00021523 insercion a la tabla
+        ps.setString(1, nombre); //00021523 toma primer parametro (?) para colocar el nombre
+        ps.setString(2, direccion); //00021523 toma segundo parametro(?) para direccion
+        ps.setString(3, telefono); //00021523 toma tercer parametro(?) para telefono
 
         return ps.executeUpdate();
 
