@@ -74,7 +74,7 @@ public class ReporteCController {
         try {
             int id = Integer.parseInt(idUsuario.getText()); // 00007515: Se convierte el id en el textfield a entero
             conexion.iniciarConexion(); // 00007515: Aqui se inicia la conexion
-            ResultSet resultados = conexion.generarReporteB(id); // 00007515: Aqui se ejecuta el generarReporteB de la clase Conexion
+            ResultSet resultados = conexion.generarReporteC(id); // 00007515: Aqui se ejecuta el generarReporteB de la clase Conexion
             while (resultados.next()) { // 00007515: Aqui se verifica que hayan resultados
                 int idTarjeta = Integer.parseInt(resultados.getString("id")); // 00007515: Se saca el id de la tarjeta
                 String numero = resultados.getString("numero"); // 00007515: Se saca el numero de tarjeta

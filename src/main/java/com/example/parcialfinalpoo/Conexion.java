@@ -36,7 +36,22 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         return rs; //00097923 retorna variable tipo resultset
     }
 
-    public ResultSet generarReporteB(int id) throws SQLException {
+    public ResultSet generarReporteB(int id, int mes, int anio) throws SQLException {//00351519 Metodo para generar reporte B
+        PreparedStatement ps = conn.prepareStatement("SELECT CC.id_cliente, MONTH(C.fecha) AS 'MES', YEAR(C.fecha) AS 'ANIO' ,SUM(monto) AS 'TOTAL DINERO POR MES'\n" +//00351519 Se agrega la consulta sql que se realizara en la base de datos
+                "\tFROM COMPRA C \n" +//00351519 Selecciona de la tabla COMPRA
+                "\tINNER JOIN COMPRAXCLIENTE CC ON C.id = CC.id_compra\n" +//00351519 une la tabla COMPRA con la tabla COMPRAXCLIENTE cuando el id sea el mismo
+                "\tWHERE CC.id_cliente = ? AND MONTH(C.fecha) = ? AND YEAR(C.fecha) = ?\n" +//00351519 realiza consulta cuando se cumplan las condiciones
+                "\tGROUP BY CC.id_cliente, MONTH(C.fecha), YEAR(C.fecha);");//00351519 Agrupa resultados por el id cliente, mes y anio de compra
+
+        ps.setInt(1, id);//00351519 parametro id cliente que estara en el ?
+        ps.setInt(2, mes);//00351519 parametro mes que estara en el ?
+        ps.setInt(3, anio);//00351519 parametro anio que estara en el ?
+
+        ResultSet rs = ps.executeQuery();//00351519 ejecuta la consulta sql
+        return rs;//00351519 retorna variable tipo ResultSet
+    }
+
+    public ResultSet generarReporteC(int id) throws SQLException {
         //   WHERE c.id = 1;
         PreparedStatement ps = conn.prepareStatement("SELECT t.id, t.numero, t.fecha_expiracion, t.tipo, f.nombre, c.id AS id_cliente" // 00007515: Aqui se coloca la consulta sql, en esta linea se selecciona lo que se va a mostrar
                 + " FROM TARJETA t " // 00007515: Aqui se coloca la tabla de de donde vienen algunos elementos del SELECT
