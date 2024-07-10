@@ -34,5 +34,10 @@
               <fx:include source="inserar-cliente.fxml" />
           </content>
       </Tab>
+      <Tab text="Insertar Comprar">
+          <content>
+              <fx:include source="insertar-compra.fxml" />
+          </content>
+      </Tab>
   </tabs>
 </TabPane>
