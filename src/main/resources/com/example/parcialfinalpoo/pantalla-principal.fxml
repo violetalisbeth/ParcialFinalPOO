@@ -24,5 +24,20 @@
               <fx:include source="reporteD.fxml" />
           </content>
       </Tab>
+      <Tab text="Insertar Tarjeta">
+          <content>
+              <fx:include source="insertar-tarjeta.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Insertar Cliente">
+          <content>
+              <fx:include source="inserar-cliente.fxml" />
+          </content>
+      </Tab>
+      <Tab text="Insertar Comprar">
+          <content>
+              <fx:include source="insertar-compra.fxml" />
+          </content>
+      </Tab>
   </tabs>
 </TabPane>

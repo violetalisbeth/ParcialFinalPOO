@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcialfinalpoo.InsertarCompraController">
+    <center>
+        <VBox prefHeight="329.0" prefWidth="600.0" spacing="16.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </padding>
+            <BorderPane.margin>
+                <Insets top="20.0" />
+            </BorderPane.margin>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Fecha de Compra:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <DatePicker fx:id="dpFechaCompra" prefHeight="25.0" prefWidth="168.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Monto:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtMonto" prefHeight="25.0" prefWidth="232.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Descripcion:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtDescripcion" prefHeight="25.0" prefWidth="161.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="ID Tarjeta:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtIDTarjeta" prefHeight="25.0" prefWidth="139.0" />
+               </children>
+            </HBox>
+         </children>
+        </VBox>
+    </center>
+   <top>
+      <ToolBar prefHeight="92.0" prefWidth="800.0" style="-fx-background-color: #23395d;" BorderPane.alignment="CENTER">
+         <items>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="772.0" text="Insertar Compra" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font></Label>
+         </items></ToolBar>
+   </top>
+   <bottom>
+      <Button fx:id="btnInsertar" mnemonicParsing="false" onAction="#insertarCompra" prefHeight="31.0" prefWidth="134.0" text="Insertar" BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets bottom="20.0" right="20.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </bottom>
+</BorderPane>

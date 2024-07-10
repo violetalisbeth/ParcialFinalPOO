@@ -64,7 +64,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ResultSet rs = ps.executeQuery(); // 00007515: Aqui se ejecuta la consulta sql
         return rs; // 00007515: Aqui se retorna el resultado
     }
-  
+
      public ResultSet generarReporteD(String facilitador)throws SQLException{ //00021523 metodo para generacion de reporte D
         PreparedStatement ps = conn.prepareStatement("SELECT C.id, C.nombre, COUNT(CP.id) AS 'Cantidad_compras', SUM(CP.monto) AS 'Total_compras'" + //00021523 consulta a sql. seleccion de columnas a mostrar
                 "FROM CLIENTE C " + //00021523 de tabla Cliente
@@ -80,5 +80,36 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ResultSet rs = ps.executeQuery(); //00021523 se encarga de la ejecucion a la consulta sql
         return rs; //00021523 devuelve un ResultSet
     }
-   
+
+    public int insertarTarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, int id_facilitador, int id_cliente) throws SQLException{ //00097923 metodo para insertar tarjetas
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO TARJETA VALUES(?,?,?,?,?)"); //00097923 insercion a table
+        ps.setString(1, numeroTarjeta); //00097923 toma primer parametro (?) para colocar el numero de tarjeta
+        ps.setString(2, fechaExpiracion); //00097923 toma segundo parametro (?) para colocar fecha de expiracion
+        ps.setString(3, tipo); //00097923 toma tercer parametro (?) para colocar tipo de tarjeta
+        ps.setInt(4, id_facilitador); //00097923 toma cuarto parametro (?) para colocar id facilitador
+        ps.setInt(5, id_cliente); //00097923 toma quinto parametro (?) para colocar el id cliente
+        return ps.executeUpdate();
+
+    }
+
+    public int insertarCliente(String nombre, String direccion, String telefono) throws SQLException{ //00021523 metodo para insertar clientes
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO CLIENTE VALUES(?,?,?)"); //00021523 insercion a la tabla
+        ps.setString(1, nombre); //00021523 toma primer parametro (?) para colocar el nombre
+        ps.setString(2, direccion); //00021523 toma segundo parametro(?) para direccion
+        ps.setString(3, telefono); //00021523 toma tercer parametro(?) para telefono
+
+        return ps.executeUpdate();
+
+    }
+
+    public int insertarCompra(String FechaCompra, double monto, String Descripcion, int idTarjeta) throws SQLException{//00351519 metodo para insertar una compra
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO COMPRA VALUES(?,?,?,?)");//00351519  Se agrega la consulta sql que se realizara en la base de datos que insertara datos a la tabla COMPRA
+        ps.setString(1, FechaCompra);//00351519 parametro fecha de la compra que estara en el ?
+        ps.setDouble(2, monto);//00351519 parametro monto que estara en el ?
+        ps.setString(3, Descripcion);//00351519 parametro descripcion que estara en el ?
+        ps.setInt(4, idTarjeta);//00351519 parametro id de la tarjeta que estara en el ?
+
+        return ps.executeUpdate();//00351519 ejecuta la consulta sql y retorna variable tipo ResultSet
+
+    }
 }
