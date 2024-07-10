@@ -22,7 +22,7 @@ public class InsertarTarjetaController {
 
 
     @FXML
-    void insertarCliente(){
+    void insertarTarjeta(){
         Conexion conexion = new Conexion(); //00097923 se manda a llamar al metodo iniciar conexion
 
         try {
