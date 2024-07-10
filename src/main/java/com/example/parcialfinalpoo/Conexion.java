@@ -36,7 +36,7 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         return rs; //00097923 retorna variable tipo resultset
     }
 
-    public ResultSet generarReporteB(int id) throws SQLException {
+    public ResultSet generarReporteC(int id) throws SQLException {
         //   WHERE c.id = 1;
         PreparedStatement ps = conn.prepareStatement("SELECT t.id, t.numero, t.fecha_expiracion, t.tipo, f.nombre, c.id AS id_cliente" // 00007515: Aqui se coloca la consulta sql, en esta linea se selecciona lo que se va a mostrar
                 + " FROM TARJETA t " // 00007515: Aqui se coloca la tabla de de donde vienen algunos elementos del SELECT

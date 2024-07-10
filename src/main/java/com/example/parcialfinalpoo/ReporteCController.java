@@ -5,6 +5,7 @@ import com.example.parcialfinalpoo.Exportar.Exportador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -21,22 +22,23 @@ public class ReporteCController {
     private ObservableList<Tarjeta> contenidoCredito; // 00007515: Lista observable de tarjetas de credito
     private ObservableList<Tarjeta> contenidoDebito; // 00007515: Lista observable de tarjetas de debito
 
-    @FXML
+    @FXML // 00007515: Conecta con la interfaz
     private ListView<Tarjeta> listaCredito; // 00007515: ListView de tarjetas de credito en el archivo fxml
 
-    @FXML
+    @FXML // 00007515: Conecta con la interfaz
     private ListView<Tarjeta> listaDebito; // 00007515: ListView de tarjetas de debito en el archivo fxml
 
-    @FXML
+    @FXML // 00007515: Conecta con la interfaz
     private TextField idUsuario; // 00007515: TextField para escribir el id de usuario en el archivo fxml
 
     @FXML
-    public void initialize() {
+    public void initialize() { // 00007515: Metodo para inicializar la pantalla
         contenidoCredito = FXCollections.observableArrayList(tarjetasCredito); // 00007515: Aqui se guarda el contenido en la lista observable de credito
         contenidoDebito = FXCollections.observableArrayList(tarjetasDebito); // 00007515: Aqui se guarda el contenido en la lista observable de debito
-        listaCredito.setItems(contenidoCredito);
-        listaDebito.setItems(contenidoDebito);
-
+        listaCredito.setItems(contenidoCredito); // 00007515: Asigna el contenido de la lista
+        listaDebito.setItems(contenidoDebito); // 00007515: Asigna el contenido de la lista
+        listaCredito.setPlaceholder(new Label("No se encontraron tarjetas de credito.")); // 00007515: Pone un Label para cuando la lista de tarjetas este vacia
+        listaDebito.setPlaceholder(new Label("No se encontraron tarjetas de debito")); // 00007515: Pone un label para cuando la lista de debito este vacia
         listaCredito.setCellFactory(param -> new ListCell<Tarjeta>() { // 00007515: Se crea un nuevo cell factory para configurar el listview
             @Override
             protected void updateItem(Tarjeta item, boolean empty) { // 00007515: Se crea funcion para actualizar las filas
@@ -74,7 +76,7 @@ public class ReporteCController {
         try {
             int id = Integer.parseInt(idUsuario.getText()); // 00007515: Se convierte el id en el textfield a entero
             conexion.iniciarConexion(); // 00007515: Aqui se inicia la conexion
-            ResultSet resultados = conexion.generarReporteB(id); // 00007515: Aqui se ejecuta el generarReporteB de la clase Conexion
+            ResultSet resultados = conexion.generarReporteC(id); // 00007515: Aqui se ejecuta el generarReporteB de la clase Conexion
             while (resultados.next()) { // 00007515: Aqui se verifica que hayan resultados
                 int idTarjeta = Integer.parseInt(resultados.getString("id")); // 00007515: Se saca el id de la tarjeta
                 String numero = resultados.getString("numero"); // 00007515: Se saca el numero de tarjeta

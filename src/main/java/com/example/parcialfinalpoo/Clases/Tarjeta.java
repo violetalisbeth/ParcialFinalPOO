@@ -12,12 +12,12 @@ public class Tarjeta {
     private int idCliente; // 00007515: id del cliente dueno de la tarejta
 
     public Tarjeta(int id, String numero, String fechaExpiracion, String tipo, String facilitador, int idCliente) { // 00007515: Aqui se crea el constructo de Tarjeta
-        this.id = id;
-        this.numero = numero;
-        this.fechaExpiracion = fechaExpiracion;
-        this.tipo = tipo;
-        this.facilitador = facilitador;
-        this.idCliente = idCliente;
+        this.id = id; // 00007515: Asignar id
+        this.numero = numero; // 00007515: Asignar numero
+        this.fechaExpiracion = fechaExpiracion; // 00007515: Asignar fecha de expiracion
+        this.tipo = tipo; // 00007515: Asignar tipo
+        this.facilitador = facilitador; // 00007515: Asignar facilitador
+        this.idCliente = idCliente; // 00007515: Asignar id cliente
     }
 
     public int getId() { // 00007515: Definicion de la funcion getId para obtener el id de la tarjeta
