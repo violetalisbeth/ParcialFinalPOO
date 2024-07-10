@@ -114,19 +114,4 @@ public class ReporteCController {
             }
         }
 
-        lineas.add("Tarjetas de Debito"); // 00007515: Se anade el titulo para debito
-        if (tarjetasDebito.isEmpty()) {
-            lineas.add("\tEl usuario no tiene tarjetas de debito."); // 00007515: Si la lista esta vacia, se muestra que esta vacia
-        } else {
-            for (int i = 0; i < tarjetasDebito.size(); i++) {
-                String tarjeta = tarjetasDebito.get(i).toString(); // 00007515: Para cada tarjeta, se usa el toString para sacar la informacion
-                lineas.add(tarjeta); // 00007515: Se agrega la tarjeta a la lista de lineas
-            }
-        }
-        try {
-            exportador.exportarReporte(lineas, "A"); // 00007515: Se intenta escribir el archivo
-        } catch (IOException e) {
-            e.printStackTrace(); // 00007515: Si falla se imprime el error
-        }
-    }
 }

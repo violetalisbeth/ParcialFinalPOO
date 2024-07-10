@@ -2,9 +2,29 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcialfinalpoo.ReporteDController">
+<BorderPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcialfinalpoo.ReporteDController">
+   <top>
+      <Pane prefHeight="113.0" prefWidth="800.0" style="-fx-background-color: #22395d;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="tfFacilitador" layoutX="472.0" layoutY="38.0" prefHeight="25.0" prefWidth="107.0" />
+            <Button fx:id="btGenerarReporte" layoutX="651.0" layoutY="17.0" mnemonicParsing="false" onAction="#onGenerarReporte" text="Generar reporte" />
+            <Button fx:id="btExportarR" layoutX="650.0" layoutY="54.0" mnemonicParsing="false" onAction="#exportarReporte" text="Exportar reporte" />
+            <Label layoutX="21.0" layoutY="35.0" text="Reporte Compras con Facilitador" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="42.0" text="Facilitador:" textFill="WHITE" />
+         </children>
+      </Pane>
+   </top>
    <center>
-      <Label text="Reporte D" BorderPane.alignment="CENTER" />
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="692.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="lvClienteFacilitador" layoutX="-6.0" layoutY="-2.0" prefHeight="395.0" prefWidth="701.0" />
+         </children>
+      </Pane>
    </center>
 </BorderPane>
