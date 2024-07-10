@@ -29,5 +29,10 @@
               <fx:include source="insertar-tarjeta.fxml" />
           </content>
       </Tab>
+      <Tab text="Insertar Cliente">
+          <content>
+              <fx:include source="inserar-cliente.fxml" />
+          </content>
+      </Tab>
   </tabs>
 </TabPane>

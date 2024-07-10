@@ -9,9 +9,9 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
     }
     public void iniciarConexion() throws SQLException{ //00097923 se crea metodo para iniciar conexion a base de datos
-        conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BCNDataBase;encrypt=false;integratedSecurity=true;", //00097923 Se crea conexion a base de datos
-                "admin", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
-                "admin"); //00097923 Aqui se coloca la contrasena del usuario
+        conn = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-NU1OAIM\\\\MSSQLSERVER01:4022;databaseName=BCNDataBase;encrypt=false;", //00097923 Se crea conexion a base de datos
+                "sa", // 00097923 Aqui se coloca el nombre de usuario que maneja la base
+                "Maell"); //00097923 Aqui se coloca la contrasena del usuario
 
     }
     public void cerrarConexion() throws SQLException{ //00097923 se crea metodo para cerrar onexion
@@ -48,5 +48,26 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
 
         ResultSet rs = ps.executeQuery(); // 00007515: Aqui se ejecuta la consulta sql
         return rs; // 00007515: Aqui se retorna el resultado
+    }
+    public int insertarTarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, int id_facilitador, int id_cliente) throws SQLException{
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO TARJETA VALUES(?,?,?,?,?)");
+        ps.setString(1, numeroTarjeta);
+        ps.setString(2, fechaExpiracion);
+        ps.setString(3, tipo);
+        ps.setInt(4, id_facilitador);
+        ps.setInt(5, id_cliente);
+
+        return ps.executeUpdate();
+
+    }
+
+    public int insertarCliente(String nombre, String direccion, String telefono) throws SQLException{
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO CLIENTE VALUES(?,?,?)");
+        ps.setString(1, nombre);
+        ps.setString(2, direccion);
+        ps.setString(3, telefono);
+
+        return ps.executeUpdate();
+
     }
 }
