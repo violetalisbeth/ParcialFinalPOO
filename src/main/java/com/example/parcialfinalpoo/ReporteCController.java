@@ -107,7 +107,7 @@ public class ReporteCController {//00351519 creacion de controller para reporte 
         lineas.add("Tarjetas de Credito"); // 00007515: Se anade el titulo para credito
         if (tarjetasCredito.isEmpty()) {//00351519 condicion que verifica si la lista esta vacia
             lineas.add("\tEl usuario no tiene tarjetas de credito."); // 00007515: Si la lista esta vacia, se muestra que esta vacia
-        } else {
+        } else {//00351519 codigo que ejecutara si no se cumple condicion inicial
             for (int i = 0; i < tarjetasCredito.size(); i++) {//00351519 estructura for que recorre contenido de la lista
                 String tarjeta = tarjetasCredito.get(i).toString(); // 00007515: Para cada tarjeta, se usa el toString para sacar la informacion
                 lineas.add(tarjeta); // 00007515: Se agrega la tarjeta a la lista de lineas

@@ -52,7 +52,7 @@ public class ReporteDController { // 00021523 clase de javafx
         clientes.clear(); // 00021523 limpia lista de clientes
         Conexion conexion = new Conexion(); // 00021523 creacion de una nueva conexion
 
-        try{
+        try{//00351519 se inicia un try... catch para capturar cualquier error
             conexion.iniciarConexion(); // 00021523 inicia conexion
 
             String facilitadorText = tfFacilitador.getText(); // 00021523 para obtener el texto que se ingreso en el text field
