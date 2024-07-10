@@ -49,4 +49,15 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ResultSet rs = ps.executeQuery(); // 00007515: Aqui se ejecuta la consulta sql
         return rs; // 00007515: Aqui se retorna el resultado
     }
+    public int insertarTarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, int id_facilitador, int id_cliente) throws SQLException{
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO TARJETA VALUES(?,?,?,?,?)");
+        ps.setString(1, numeroTarjeta);
+        ps.setString(2, fechaExpiracion);
+        ps.setString(3, tipo);
+        ps.setInt(4, id_facilitador);
+        ps.setInt(5, id_cliente);
+
+        return ps.executeUpdate();
+
+    }
 }
