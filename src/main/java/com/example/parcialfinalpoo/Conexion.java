@@ -36,7 +36,22 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         return rs; //00097923 retorna variable tipo resultset
     }
 
-    public ResultSet generarReporteB(int id) throws SQLException {
+    public ResultSet generarReporteB(int id, int mes, int anio) throws SQLException {//00351519 Metodo para generar reporte B
+        PreparedStatement ps = conn.prepareStatement("SELECT CC.id_cliente, MONTH(C.fecha) AS 'MES', YEAR(C.fecha) AS 'ANIO' ,SUM(monto) AS 'TOTAL DINERO POR MES'\n" +//00351519 Se agrega la consulta sql que se realizara en la base de datos
+                "\tFROM COMPRA C \n" +//00351519 Selecciona de la tabla COMPRA
+                "\tINNER JOIN COMPRAXCLIENTE CC ON C.id = CC.id_compra\n" +//00351519 une la tabla COMPRA con la tabla COMPRAXCLIENTE cuando el id sea el mismo
+                "\tWHERE CC.id_cliente = ? AND MONTH(C.fecha) = ? AND YEAR(C.fecha) = ?\n" +//00351519 realiza consulta cuando se cumplan las condiciones
+                "\tGROUP BY CC.id_cliente, MONTH(C.fecha), YEAR(C.fecha);");//00351519 Agrupa resultados por el id cliente, mes y anio de compra
+
+        ps.setInt(1, id);//00351519 parametro id cliente que estara en el ?
+        ps.setInt(2, mes);//00351519 parametro mes que estara en el ?
+        ps.setInt(3, anio);//00351519 parametro anio que estara en el ?
+
+        ResultSet rs = ps.executeQuery();//00351519 ejecuta la consulta sql
+        return rs;//00351519 retorna variable tipo ResultSet
+    }
+
+    public ResultSet generarReporteC(int id) throws SQLException {
         //   WHERE c.id = 1;
         PreparedStatement ps = conn.prepareStatement("SELECT t.id, t.numero, t.fecha_expiracion, t.tipo, f.nombre, c.id AS id_cliente" // 00007515: Aqui se coloca la consulta sql, en esta linea se selecciona lo que se va a mostrar
                 + " FROM TARJETA t " // 00007515: Aqui se coloca la tabla de de donde vienen algunos elementos del SELECT
@@ -49,6 +64,23 @@ public class Conexion { //00097923 se crea clase conexion para establecer la con
         ResultSet rs = ps.executeQuery(); // 00007515: Aqui se ejecuta la consulta sql
         return rs; // 00007515: Aqui se retorna el resultado
     }
+
+     public ResultSet generarReporteD(String facilitador)throws SQLException{ //00021523 metodo para generacion de reporte D
+        PreparedStatement ps = conn.prepareStatement("SELECT C.id, C.nombre, COUNT(CP.id) AS 'Cantidad_compras', SUM(CP.monto) AS 'Total_compras'" + //00021523 consulta a sql. seleccion de columnas a mostrar
+                "FROM CLIENTE C " + //00021523 de tabla Cliente
+                "INNER JOIN TARJETA T ON C.id = T.id_cliente " + //00021523 Donde id cliente y id_cliente(FK) en tarjeta sean el mismo
+                "INNER JOIN FACILITADOR F ON T.id_facilitador = F.id " + //00021523 id facilitador y id_facilitador(FK) en tarjeta sea el mismo
+                "INNER JOIN COMPRA CP ON T.id = CP.id_tarjeta " + //00021523 id de tarjeta coincida con id_tarjeta(FK) en compra
+                "WHERE F.nombre = ? " + //00021523 WHERE condiciona a solo mostrar el facilitador de interes por medio de su nombre
+                "GROUP BY C.id, C.nombre " + //00021523 agrupacion de los resultados en cliente id y nombre
+                "ORDER BY COUNT(CP.id) DESC "); //00021523 Ordena lso resultados de forma descendente segun la cantidad de compras
+
+        ps.setString(1, facilitador); //00021523 recibe parametro String donde iria el nombre de facilitador
+
+        ResultSet rs = ps.executeQuery(); //00021523 se encarga de la ejecucion a la consulta sql
+        return rs; //00021523 devuelve un ResultSet
+    }
+
     public int insertarTarjeta(String numeroTarjeta, String fechaExpiracion, String tipo, int id_facilitador, int id_cliente) throws SQLException{ //00097923 metodo para insertar tarjetas
         PreparedStatement ps = conn.prepareStatement("INSERT INTO TARJETA VALUES(?,?,?,?,?)"); //00097923 insercion a table
         ps.setString(1, numeroTarjeta); //00097923 toma primer parametro (?) para colocar el numero de tarjeta
