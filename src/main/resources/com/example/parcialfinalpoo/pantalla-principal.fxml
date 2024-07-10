@@ -39,5 +39,10 @@
               <fx:include source="insertar-compra.fxml" />
           </content>
       </Tab>
+      <Tab text="Borrar">
+          <content>
+              <fx:include source="borrar-base.fxml" />
+          </content>
+      </Tab>
   </tabs>
 </TabPane>
